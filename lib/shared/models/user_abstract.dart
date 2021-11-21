@@ -1,7 +1,7 @@
 abstract class AbstractUser{
-  String id;
-  String name;
-  String mail;
-  String phone;
-  String password;
+  late String id;
+  late String name;
+  late String mail;
+  late String phone;
+  late String password;
 }

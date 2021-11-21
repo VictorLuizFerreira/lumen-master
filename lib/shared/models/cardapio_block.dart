@@ -1,6 +1,9 @@
 class CardapioBlock{
-  String id;
-  String name;
-  DateTime startDate;
-  List<Categories> listCategories;
+  late String id;
+  late String name;
+  late DateTime startDate;
+  late List<Categories> listCategories;
+}
+
+class Categories {
 }

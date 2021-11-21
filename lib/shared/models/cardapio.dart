@@ -1,9 +1,9 @@
 class Cardapio{
-  String id;
-  String imgExplanation;
-  String name;
-  int price;
-  String recipe;
-  int time_prepare;
-  int qtd;
+  late String id;
+  late String imgExplanation;
+  late String name;
+  late int price;
+  late String recipe;
+  late int time_prepare;
+  late int qtd;
 }

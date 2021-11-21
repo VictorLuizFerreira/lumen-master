@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lumen/pages/cadastro/cadastro_service.dart';
 import 'package:lumen/shared/models/login_model.dart';
 import 'package:lumen/shared/values/custom_colors.dart';
 import 'package:lumen/shared/values/preferences_keys.dart';
@@ -20,7 +21,8 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _phoneInputController = TextEditingController();
   TextEditingController _passwordInputController = TextEditingController();
 
-  bool showPassword = false;
+  bool _obscurePassword = true;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,12 +52,22 @@ class _SignUpPageState extends State<SignUpPage> {
                     fontWeight: FontWeight.bold
                 ),
               ),
+              Padding(
+                  padding: EdgeInsets.only(bottom: 10)
+              ),
               Form(
+                key: _formKey,
                   child: Column(
                   children: [
-
                     TextFormField(
+                      validator: (value) {
+                        if (value!.length < 10) {
+                          return "Digite um nome maior";
+                        }
+                        return null;
+                      },
                       controller: _nameInputController,
+                      autofocus: true,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       labelText: "Nome Completo",
@@ -78,6 +90,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
 
                     TextFormField(
+                      validator: (value){
+                        if(value!.length < 4){
+                          return "E-mail curto demais";
+                        } else if (!value.contains("@")){
+                          return "E-mail faltando caracter";
+                        }
+                        return null;
+                      },
                       controller: _mailInputController,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -102,6 +122,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
 
                     TextFormField(
+                      validator: (value){
+                        if(value!.length < 8){
+                          return "Telefone curto demais";
+                        }
+                        return null;
+                      },
                       controller: _phoneInputController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
@@ -124,10 +150,15 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
 
-                    (this.showPassword == false)?
                     TextFormField(
+                      validator: (value){
+                        if (value!.length < 6){
+                          return "A senha deve possuir no mínimo 6 caracteres";
+                        }
+                        return null;
+                      },
+                      obscureText: _obscurePassword,
                       controller: _passwordInputController,
-                      obscureText: (this.showPassword == true) ? false : true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Senha",
@@ -148,20 +179,20 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
-                    ):Container(),
+                    ),
 
                     Row(
                       children: [
                         Checkbox(
-                          value: this.showPassword,
+                          value: this._obscurePassword,
                           onChanged: (bool? value) {
                             setState(() {
-                              this.showPassword = value!;
+                              this._obscurePassword = value!;
                             });
                           },
                         ),
                         Text(
-                          "Mostrar senha",
+                          "Ocultar senha",
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -188,23 +219,34 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
   void _doSignUp(){
-    LoginModel newUser = LoginModel(
-      name: _nameInputController.text,
-      mail: _mailInputController.text,
-      phone: _phoneInputController.text,
-      password: _passwordInputController.text,
-      keepOn: true,
-    );
+    if (_formKey.currentState!.validate()) {
+      CadastroService().cadastrar(
+          _mailInputController.text,
+          _passwordInputController.text,
+      );
+    } else{
+      print("inválido");
+    }
 
-    print(newUser);
-    _saveUser(newUser);
+    //LoginModel newUser = LoginModel(
+      //name: _nameInputController.text,
+      //mail: _mailInputController.text,
+      //phone: _phoneInputController.text,
+      //password: _passwordInputController.text,
+      //keepOn: true,
+   // );
+
+   // print(newUser);
+   // _saveUser(newUser);
   }
 
   void _saveUser(LoginModel user) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(
         PreferencesKeys.activeUser,
-        json.encode(user.toJson())
+        json.encode(user.toJson()),
     );
   }
 }
+
+
