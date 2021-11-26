@@ -5,6 +5,7 @@ class CustomColors{
   Color _activeSecondaryButtonColor = Color.fromARGB(255, 230, 230, 230);
   Color _gradientMainColor = Color.fromARGB(255, 204, 105, 0);
   Color _gradientSecondColor = Color.fromARGB(255, 241, 207, 146);
+  Color _appBarMainColor = Color(0xffF2D096);
 
   Color getActivePrimaryButtonColor(){
     return _activePrimaryButtonColor;
@@ -21,5 +22,9 @@ class CustomColors{
 
   Color getGradientSecondColor() {
     return _gradientSecondColor;
+  }
+
+  Color getappBarMainColor(){
+    return _appBarMainColor;
   }
 }

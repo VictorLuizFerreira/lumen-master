@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lumen/learn_firebase.dart';
+import 'package:lumen/pages/home/home_page.dart';
 import 'package:lumen/pages/login/login_page.dart';
 
 
