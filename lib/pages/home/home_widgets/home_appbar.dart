@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lumen/shared/values/custom_colors.dart';
 
 AppBar getHomeAppBar(){
   return AppBar(
-    title: Text("Restaurantes"),
+    title: const Text("Restaurantes"),
     centerTitle: true,
-    backgroundColor: Color(0xffF2D096),
+    backgroundColor: CustomColors().getappBarMainColor(),
     actions: [
       IconButton(
-        icon: Icon(
+        icon: const Icon(
         Icons.search,
         color: Colors.white,
       ), onPressed: () {  },

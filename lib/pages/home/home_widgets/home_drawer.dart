@@ -8,9 +8,9 @@ Drawer getHomeDrawer(){
       children: [
         UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: CustomColors().getappBarMainColor()),
-            accountName: Text("Victor Luiz Ferreira"),
-            accountEmail: Text("victor.lf@sempreceub.com"),
-          currentAccountPicture: CircleAvatar(
+            accountName: const Text("Victor Luiz Ferreira"),
+            accountEmail: const Text("victor.lf@sempreceub.com"),
+          currentAccountPicture: const CircleAvatar(
             backgroundColor: Colors.white,
             child: Text(
               "VF",
@@ -24,7 +24,7 @@ Drawer getHomeDrawer(){
               Icons.settings,
               color: CustomColors().getappBarMainColor()
           ),
-          title: Text(
+          title: const Text(
               "Configurações",
               ),
         ),
@@ -33,7 +33,7 @@ Drawer getHomeDrawer(){
               Icons.arrow_back_sharp,
               color: CustomColors().getappBarMainColor()
           ),
-          title: Text(
+          title: const Text(
             "Sair",
           ),
         )

@@ -16,20 +16,19 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController _nameInputController = TextEditingController();
-  TextEditingController _mailInputController = TextEditingController();
-  TextEditingController _phoneInputController = TextEditingController();
-  TextEditingController _passwordInputController = TextEditingController();
+  final TextEditingController _nameInputController = TextEditingController();
+  final TextEditingController _mailInputController = TextEditingController();
+  final TextEditingController _phoneInputController = TextEditingController();
+  final TextEditingController _passwordInputController = TextEditingController();
 
   bool _obscurePassword = true;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+    return Container(
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
+
+        height: MediaQuery.of(context).size.height * 1.2,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -42,8 +41,9 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         child: SingleChildScrollView(
           child: Column(
+
             children: [
-              Text(
+              const Text(
                   "Cadastro",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -52,7 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     fontWeight: FontWeight.bold
                 ),
               ),
-              Padding(
+              const Padding(
                   padding: EdgeInsets.only(bottom: 10)
               ),
               Form(
@@ -68,8 +68,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                       controller: _nameInputController,
                       autofocus: true,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
                       labelText: "Nome Completo",
                       labelStyle: TextStyle(color: Colors.white),
                       prefixIcon: Icon(
@@ -99,8 +99,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       },
                       controller: _mailInputController,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
                       labelText: "E-mail",
                       labelStyle: TextStyle(color: Colors.white),
                       prefixIcon: Icon(
@@ -129,8 +129,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         return null;
                       },
                       controller: _phoneInputController,
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
                         labelText: "Telefone",
                         labelStyle: TextStyle(color: Colors.white),
                         prefixIcon: Icon(
@@ -159,8 +159,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                       obscureText: _obscurePassword,
                       controller: _passwordInputController,
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
                         labelText: "Senha",
                         labelStyle: TextStyle(color: Colors.white),
                         prefixIcon: Icon(
@@ -191,7 +191,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             });
                           },
                         ),
-                        Text(
+                        const Text(
                           "Ocultar senha",
                           style: TextStyle(color: Colors.white),
                         ),
@@ -204,7 +204,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 onPressed: (){
                   _doSignUp();
                 },
-                child: Text(
+                child: const Text(
                   "Cadastrar"
                 ),
                 color: CustomColors().getActiveSecondaryButtonColor(),
@@ -215,7 +215,6 @@ class _SignUpPageState extends State<SignUpPage> {
             ],
           ),
         ),
-      ),
     );
   }
   void _doSignUp(){

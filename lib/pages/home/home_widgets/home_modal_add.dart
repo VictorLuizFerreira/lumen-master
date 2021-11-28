@@ -5,40 +5,40 @@ import 'home_list_model.dart';
 
 
 class HomeModalAdd extends StatefulWidget {
-  final List<HomeListModel> listModels;
-  final Function fncRefresh;
-  HomeModalAdd({required this.listModels, required this.fncRefresh});
+  final List<HomeListModel>? listModels;
+  final Function? fncRefresh;
+  const HomeModalAdd({this.listModels, this.fncRefresh});
 
   @override
   _HomeModalAddState createState() => _HomeModalAddState();
 }
 
 class _HomeModalAddState extends State<HomeModalAdd> {
-  TextEditingController _nameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.8,
       child: Padding(
-        padding: EdgeInsets.all(40),
+        padding: const EdgeInsets.all(40),
         child: Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
+              const Text(
                   "Adicionar Restaurante",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: "Qual o nome do restaurante?"),
+                decoration: const InputDecoration(labelText: "Qual o nome do restaurante?"),
               ),
-              Padding(padding: EdgeInsets.only(bottom: 35)),
+              const Padding(padding: EdgeInsets.only(bottom: 35)),
               ElevatedButton(
                   onPressed: (){
                     addInList();
                   },
-                  child: Text("Adicionar"),
+                  child: const Text("Adicionar"),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(CustomColors().getappBarMainColor())
                   ),
@@ -54,9 +54,9 @@ class _HomeModalAddState extends State<HomeModalAdd> {
         assetIcon: "assets/icons/faustoemanu.png",
         title: _nameController.text);
     setState(() {
-      widget.listModels.add(hml);
+      widget.listModels!.add(hml);
     });
-    widget.fncRefresh();
+    widget.fncRefresh!();
     Navigator.pop(context);
   }
 }

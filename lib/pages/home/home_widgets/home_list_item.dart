@@ -5,8 +5,8 @@ import 'package:lumen/pages/home/home_widgets/home_list_model.dart';
 import 'package:lumen/shared/values/custom_colors.dart';
 
 class HomeListItem extends StatefulWidget {
-  final HomeListModel homeListModel;
-  HomeListItem({required this.homeListModel});
+  final HomeListModel? homeListModel;
+  HomeListItem({this.homeListModel});
 
 
   @override
@@ -40,16 +40,16 @@ class _HomeListItemState extends State<HomeListItem> {
               ),
             ),
             child: Container(
-              padding: EdgeInsets.all(4),
+              padding: const EdgeInsets.all(4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Image.asset(widget.homeListModel.assetIcon),
-                      Padding(padding: EdgeInsets.only(left: 15)),
+                      Image.asset(widget.homeListModel!.assetIcon!),
+                      const Padding(padding: EdgeInsets.only(left: 15)),
                       Text(
-                          widget.homeListModel.title,
+                          widget.homeListModel!.title!,
                           style: TextStyle(
                               color: CustomColors().getGradientMainColor(),
                               fontWeight: FontWeight.bold

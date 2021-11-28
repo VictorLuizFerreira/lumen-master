@@ -19,4 +19,3 @@ class CadastroService{
   }
 }
 
-// é isso ai!

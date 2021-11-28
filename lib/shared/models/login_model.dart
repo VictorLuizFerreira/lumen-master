@@ -1,11 +1,11 @@
 class LoginModel {
-  String name = "";
-  String mail = "";
-  String phone = "";
-  String password = "";
-  bool keepOn = true;
+  String? name;
+  String? mail;
+  String? phone;
+  String? password;
+  bool? keepOn = true;
 
-  LoginModel({required this.name, required this.mail, required this.phone, required this.password, required this.keepOn});
+  LoginModel({this.name, this.mail, this.phone, this.password, this.keepOn});
 
   LoginModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -16,20 +16,21 @@ class LoginModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['mail'] = this.mail;
-    data['phone'] = this.phone;
-    data['password'] = this.password;
-    data['keepOn'] = this.keepOn;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['mail'] = mail;
+    data['phone'] = phone;
+    data['password'] = password;
+    data['keepOn'] = keepOn;
     return data;
   }
 
 
 
-String toString() {
-      return "Name: " + this.name + "\nE-mail: " + this.mail + "\nTelefone: " + this.phone + "\nSenha: " +
-          this.password;
+@override
+  String toString() {
+      return "Name: " + name! + "\nE-mail: " + mail! + "\nTelefone: " + phone! + "\nSenha: " +
+          password!;
     }
 }
 
