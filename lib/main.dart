@@ -1,25 +1,26 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:lumen/learn_firebase.dart';
-import 'package:lumen/pages/home/home_page.dart';
-import 'package:lumen/pages/login/login_page.dart';
-import 'package:lumen/pages/login/widgets/login_splash.dart';
+
+import 'package:lumen/shared/services/auth_service.dart';
+import 'package:provider/provider.dart';
+
+import 'myapp.dart';
 
 
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+  runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => AuthService()),
+        ],
+        child: MyApp(),
+      ),
+  );
 }
 
-class MyApp extends StatelessWidget {
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: LoginSplash(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
 

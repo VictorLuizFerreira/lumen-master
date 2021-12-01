@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lumen/pages/cadastro/cadastro_service.dart';
 import 'package:lumen/shared/models/login_model.dart';
+import 'package:lumen/shared/services/auth_service.dart';
 import 'package:lumen/shared/values/custom_colors.dart';
 import 'package:lumen/shared/values/preferences_keys.dart';
+import 'package:provider/src/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,7 +24,9 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordInputController = TextEditingController();
 
   bool _obscurePassword = true;
+
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
             children: [
               const Text(
-                  "Cadastro",
+                  "Cadastre-se",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -200,16 +204,23 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
               ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: (){
                   _doSignUp();
                 },
                 child: const Text(
-                  "Cadastrar"
+                  "Cadastrar",
+                  style: TextStyle(color: Colors.black),
                 ),
-                color: CustomColors().getActiveSecondaryButtonColor(),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    CustomColors().getActiveSecondaryButtonColor(),
+                  ),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -217,12 +228,27 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
     );
   }
+
+
+
+  registrar() async{
+    try{
+      await context.read<AuthService>().registrar(_mailInputController.text, _passwordInputController.text);
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message!)));
+    }
+  }
+
   void _doSignUp(){
     if (_formKey.currentState!.validate()) {
-      CadastroService().cadastrar(
-          _mailInputController.text,
-          _passwordInputController.text,
-      );
+        registrar();
+        //CadastroService().cadastrar(
+          //_mailInputController.text,
+          //_passwordInputController.text,
+       // );
+        context.read<AuthService>().login(_mailInputController.text, _passwordInputController.text);
+
     } else{
       print("inválido");
     }

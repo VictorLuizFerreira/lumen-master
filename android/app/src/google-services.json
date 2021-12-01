@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "151846643873",
+    "firebase_url": "https://lumenu-1b94c-default-rtdb.firebaseio.com",
+    "project_id": "lumenu-1b94c",
+    "storage_bucket": "lumenu-1b94c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151846643873:android:5952ccdc4f78c13f69e8e0",
+        "android_client_info": {
+          "package_name": "com.example.lumen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151846643873-1btbsts1i871o254otii6jl0jjbv27i7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6bpXsXBiY4fd0RncyLK8eYNDEqQdE_aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151846643873-1btbsts1i871o254otii6jl0jjbv27i7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151846643873:android:5bb4d94df41c18fa69e8e0",
+        "android_client_info": {
+          "package_name": "com.lomenu.lo_menu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151846643873-1btbsts1i871o254otii6jl0jjbv27i7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6bpXsXBiY4fd0RncyLK8eYNDEqQdE_aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151846643873-1btbsts1i871o254otii6jl0jjbv27i7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

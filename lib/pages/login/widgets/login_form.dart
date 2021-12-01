@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lumen/pages/home/home_page.dart';
+import 'package:lumen/shared/services/auth_service.dart';
 import 'package:lumen/shared/values/custom_colors.dart';
+import 'package:provider/src/provider.dart';
 
 import '../login_service.dart';
 
@@ -18,10 +21,10 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+
   Widget build(BuildContext context) {
 
     return Form(
-      //resizeToAvoidBottomInset: false,
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -62,6 +65,7 @@ class _LoginFormState extends State<LoginForm> {
             validator: (value){
               if (value!.length < 6){
                 return "A senha deve possuir no mínimo 6 caracteres";
+
               }
               return null;
             },
@@ -144,12 +148,39 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  void _doLogin() async {
-    if (_formKey.currentState!.validate()) {
-      LoginService()
-          .login(_mailInputController.text, _passwordInputController.text);
-    } else {
-      print("inválido");
+  login() async{
+    try{
+      await context.read<AuthService>().login(_mailInputController.text, _passwordInputController.text);
+      Navigator.pushReplacement(
+        context, MaterialPageRoute( builder: (context) => HomePage()));
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(
+        content: Text(e.message!),
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height - 120,
+            right: 20,
+            left: 20),
+      ),
+      );
+
     }
   }
+
+
+
+  void _doLogin() async {
+    if (_formKey.currentState!.validate()) {
+      login();
+      print("teste");
+      context.read<AuthService>().login(_mailInputController.text, _passwordInputController.text);
+    } else {
+      print("sla");
+    }
+  }
+
+
 }
+
+
